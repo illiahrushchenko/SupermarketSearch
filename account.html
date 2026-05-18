@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRODUCT.UA — Кабінет</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">PRODUCT.UA</div>
+      <nav class="nav-links">
+        <a href="index.html">Головна</a>
+        <a href="favorites.html">Вподобані</a>
+        <a class="active" href="account.html">Кабінет</a>
+        <a href="chat.html">AI-чат</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2>Реєстрація / Вхід</h2>
+      <div class="grid grid-2">
+        <div>
+          <label for="name">Ім'я</label>
+          <input id="name" value="Ілля" />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" value="user@example.com" />
+        </div>
+      </div>
+      <div class="grid grid-2" style="margin-top:12px">
+        <div>
+          <label for="password">Пароль</label>
+          <input id="password" type="password" value="password123" />
+        </div>
+        <div>
+          <label for="auth">Режим</label>
+          <select id="auth">
+            <option>Увійти</option>
+            <option>Зареєструватись</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid grid-2" style="margin-top:12px">
+        <button>Підтвердити</button>
+        <a class="button-link secondary" href="favorites.html">Переглянути мій wishlist</a>
+      </div>
+      <p class="footer-note">Дані кабінету синхронізуються з профілем користувача.</p>
+    </section>
+  </main>
+</body>
+</html>
