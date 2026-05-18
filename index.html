@@ -47,9 +47,9 @@
     </section>
 
     <section class="stats grid grid-3">
-      <div class="stat"><h3>Мінімальна ціна</h3><p>19.90 ₴</p></div>
-      <div class="stat"><h3>Середня ціна</h3><p>52.40 ₴</p></div>
-      <div class="stat"><h3>Максимальна ціна</h3><p>94.90 ₴</p></div>
+      <div class="stat"><h3>Мінімальна ціна</h3><p id="stat-min">—</p></div>
+      <div class="stat"><h3>Середня ціна</h3><p id="stat-avg">—</p></div>
+      <div class="stat"><h3>Максимальна ціна</h3><p id="stat-max">—</p></div>
     </section>
 
     <section class="section">
@@ -59,82 +59,82 @@
           <tr>
             <th>Товар</th>
             <th>Категорія</th>
-            <th>Ціна в АТБ</th>
-            <th>Популярність</th>
+            <th>Ціна</th>
+            <th>Магазин</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="product-tbody">
           <tr>
             <td>Молоко Яготинське 2.5% 950 г</td>
             <td>Молочні</td>
             <td>49.90 ₴</td>
-            <td>★★★★☆</td>
+            <td><span class="badge good">АТБ</span></td>
           </tr>
           <tr>
             <td>Кефір Слов'яночка 1% 400 г</td>
             <td>Молочні</td>
             <td>24.90 ₴</td>
-            <td>★★★☆☆</td>
+            <td><span class="badge good">АТБ</span></td>
           </tr>
           <tr>
             <td>Яйця курячі С1, 10 шт</td>
             <td>Яйця</td>
             <td>62.90 ₴</td>
-            <td>★★★★★</td>
+            <td><span class="badge good">АТБ</span></td>
           </tr>
           <tr>
             <td>Хліб «Нива» нарізний, 400 г</td>
             <td>Хліб</td>
             <td>19.90 ₴</td>
-            <td>★★★★★</td>
+            <td><span class="badge good">АТБ</span></td>
           </tr>
           <tr>
             <td>Олія соняшникова рафінована, 850 мл</td>
             <td>Бакалія</td>
             <td>64.90 ₴</td>
-            <td>★★★★☆</td>
+            <td><span class="badge good">АТБ</span></td>
           </tr>
           <tr>
             <td>Цукор-пісок, 1 кг</td>
             <td>Бакалія</td>
             <td>38.90 ₴</td>
-            <td>★★★★☆</td>
+            <td><span class="badge good">АТБ</span></td>
           </tr>
           <tr>
             <td>Банани, кг</td>
             <td>Фрукти</td>
             <td>44.90 ₴</td>
-            <td>★★★★★</td>
+            <td><span class="badge good">АТБ</span></td>
           </tr>
           <tr>
             <td>Яблука Голден, кг</td>
             <td>Фрукти</td>
             <td>39.90 ₴</td>
-            <td>★★★★☆</td>
+            <td><span class="badge good">АТБ</span></td>
           </tr>
           <tr>
             <td>Помідори червоні, кг</td>
             <td>Овочі</td>
             <td>69.90 ₴</td>
-            <td>★★★☆☆</td>
+            <td><span class="badge good">АТБ</span></td>
           </tr>
           <tr>
             <td>Картопля, кг</td>
             <td>Овочі</td>
             <td>29.90 ₴</td>
-            <td>★★★★★</td>
+            <td><span class="badge good">АТБ</span></td>
           </tr>
           <tr>
             <td>Вода Моршинська 1.5 л</td>
             <td>Напої</td>
             <td>28.90 ₴</td>
-            <td>★★★★☆</td>
+            <td><span class="badge good">АТБ</span></td>
           </tr>
           <tr>
             <td>Coca-Cola 1.5 л</td>
             <td>Напої</td>
             <td>94.90 ₴</td>
-            <td>★★★★☆</td>
+            <td><span class="badge good">АТБ</span></td>
           </tr>
         </tbody>
       </table>
@@ -142,5 +142,41 @@
 
     <p class="footer-note">Джерело цін: каталог АТБ. Назва сервісу: PRODUCT.UA.</p>
   </main>
+
+  <script>
+    function filterProducts() {
+      const query = document.getElementById('search').value.toLowerCase().trim();
+      const rows = document.querySelectorAll('#product-tbody tr');
+      const prices = [];
+
+      rows.forEach(function(row) {
+        const name = row.cells[0].textContent.toLowerCase();
+        const cat  = row.cells[1].textContent.toLowerCase();
+        const match = !query || name.includes(query) || cat.includes(query);
+        row.style.display = match ? '' : 'none';
+        if (match) {
+          const price = parseFloat(row.cells[2].textContent.replace('₴', '').trim());
+          if (!isNaN(price)) prices.push(price);
+        }
+      });
+
+      if (prices.length) {
+        const min = Math.min(...prices);
+        const max = Math.max(...prices);
+        const avg = prices.reduce(function(a, b) { return a + b; }, 0) / prices.length;
+        const fmt = function(n) { return n.toFixed(2) + ' ₴'; };
+        document.getElementById('stat-min').textContent = fmt(min);
+        document.getElementById('stat-avg').textContent = fmt(avg);
+        document.getElementById('stat-max').textContent = fmt(max);
+      } else {
+        document.getElementById('stat-min').textContent = '—';
+        document.getElementById('stat-avg').textContent = '—';
+        document.getElementById('stat-max').textContent = '—';
+      }
+    }
+
+    document.getElementById('search').addEventListener('input', filterProducts);
+    filterProducts();
+  </script>
 </body>
 </html>
