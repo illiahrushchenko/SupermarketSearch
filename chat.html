@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SupermarketSearch — AI-чат</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">SupermarketSearch</div>
+      <nav class="nav-links">
+        <a href="index.html">Головна</a>
+        <a href="favorites.html">Вподобані</a>
+        <a href="account.html">Кабінет</a>
+        <a class="active" href="chat.html">AI-чат</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section chat">
+      <h2>AI-помічник вибору товарів (мокап)</h2>
+      <div class="message user">Користувач: Порадь бюджетний набір на сніданок.</div>
+      <div class="message ai">AI: Рекомендую молоко 2.5% (АТБ 39.90 ₴), банани (Novus 53.50 ₴) та вівсянку. Орієнтовна сума — до 130 ₴.</div>
+      <div class="message user">Користувач: Відфільтруй лише фрукти.</div>
+      <div class="message ai">AI: Спробуйте категорію «Фрукти» на головній сторінці та сортування за ціною.</div>
+      <label for="prompt">Новий запит</label>
+      <textarea id="prompt" rows="3">Покажи найдешевший кошик на 3 товари.</textarea>
+      <div class="grid grid-2">
+        <button>Надіслати</button>
+        <a class="button-link secondary" href="index.html">Повернутись до результатів</a>
+      </div>
+      <span class="badge warn">Демонстраційний режим: відповіді фіксовані</span>
+    </section>
+  </main>
+</body>
+</html>
