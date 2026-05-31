@@ -61,6 +61,7 @@
             <th>Категорія</th>
             <th>Ціна</th>
             <th>Магазин</th>
+            <th></th>
           </tr>
         </thead>
         <tbody id="product-tbody">
@@ -69,72 +70,112 @@
             <td>Молочні</td>
             <td>49.90 ₴</td>
             <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish active" title="Прибрати з вподобаних">♥</button></td>
+          </tr>
+          <tr>
+            <td>Молоко Простоквашино 2.5% 930 г</td>
+            <td>Молочні</td>
+            <td>46.90 ₴</td>
+            <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish" title="Додати до вподобаних">♥</button></td>
+          </tr>
+          <tr>
+            <td>Молоко Lactel ультрапастеризоване 1.5% 1 л</td>
+            <td>Молочні</td>
+            <td>52.90 ₴</td>
+            <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish" title="Додати до вподобаних">♥</button></td>
+          </tr>
+          <tr>
+            <td>Молоко Буренка знежирене 0.5% 900 г</td>
+            <td>Молочні</td>
+            <td>39.90 ₴</td>
+            <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish" title="Додати до вподобаних">♥</button></td>
+          </tr>
+          <tr>
+            <td>Молоко «На здоров'я» 3.2% 1 л</td>
+            <td>Молочні</td>
+            <td>44.90 ₴</td>
+            <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish" title="Додати до вподобаних">♥</button></td>
           </tr>
           <tr>
             <td>Кефір Слов'яночка 1% 400 г</td>
             <td>Молочні</td>
             <td>24.90 ₴</td>
             <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish" title="Додати до вподобаних">♥</button></td>
           </tr>
           <tr>
             <td>Яйця курячі С1, 10 шт</td>
             <td>Яйця</td>
             <td>62.90 ₴</td>
             <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish" title="Додати до вподобаних">♥</button></td>
           </tr>
           <tr>
             <td>Хліб «Нива» нарізний, 400 г</td>
             <td>Хліб</td>
             <td>19.90 ₴</td>
             <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish" title="Додати до вподобаних">♥</button></td>
           </tr>
           <tr>
             <td>Олія соняшникова рафінована, 850 мл</td>
             <td>Бакалія</td>
             <td>64.90 ₴</td>
             <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish" title="Додати до вподобаних">♥</button></td>
           </tr>
           <tr>
             <td>Цукор-пісок, 1 кг</td>
             <td>Бакалія</td>
             <td>38.90 ₴</td>
             <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish" title="Додати до вподобаних">♥</button></td>
           </tr>
           <tr>
             <td>Банани, кг</td>
             <td>Фрукти</td>
             <td>44.90 ₴</td>
             <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish" title="Додати до вподобаних">♥</button></td>
           </tr>
           <tr>
             <td>Яблука Голден, кг</td>
             <td>Фрукти</td>
             <td>39.90 ₴</td>
             <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish" title="Додати до вподобаних">♥</button></td>
           </tr>
           <tr>
             <td>Помідори червоні, кг</td>
             <td>Овочі</td>
             <td>69.90 ₴</td>
             <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish" title="Додати до вподобаних">♥</button></td>
           </tr>
           <tr>
             <td>Картопля, кг</td>
             <td>Овочі</td>
             <td>29.90 ₴</td>
             <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish" title="Додати до вподобаних">♥</button></td>
           </tr>
           <tr>
             <td>Вода Моршинська 1.5 л</td>
             <td>Напої</td>
             <td>28.90 ₴</td>
             <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish" title="Додати до вподобаних">♥</button></td>
           </tr>
           <tr>
             <td>Coca-Cola 1.5 л</td>
             <td>Напої</td>
             <td>94.90 ₴</td>
             <td><span class="badge good">АТБ</span></td>
+            <td><button class="btn-wish" title="Додати до вподобаних">♥</button></td>
           </tr>
         </tbody>
       </table>
@@ -177,6 +218,13 @@
 
     document.getElementById('search').addEventListener('input', filterProducts);
     filterProducts();
+
+    document.getElementById('product-tbody').addEventListener('click', function(e) {
+      const btn = e.target.closest('.btn-wish');
+      if (!btn) return;
+      const isActive = btn.classList.toggle('active');
+      btn.title = isActive ? 'Прибрати з вподобаних' : 'Додати до вподобаних';
+    });
   </script>
 </body>
 </html>
