@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRODUCT.UA — Головна</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 16px;
+      gap: 12px;
+      color: var(--muted);
+    }
+
+    .empty-state svg {
+      opacity: 0.35;
+    }
+
+    .empty-state h3 {
+      margin: 0;
+      font-size: 18px;
+      color: var(--text);
+    }
+
+    .empty-state p {
+      margin: 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">PRODUCT.UA</div>
+      <nav class="nav-links">
+        <a class="active" href="index.html">Головна</a>
+        <a href="favorites.html">Вподобані</a>
+        <a href="account.html">Кабінет</a>
+        <a href="chat.html">AI-чат</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls grid grid-3">
+      <div>
+        <label for="catalog">Каталог</label>
+        <select id="catalog">
+          <option>Усі категорії</option>
+          <option>Молочні продукти</option>
+          <option>Фрукти</option>
+          <option>Овочі</option>
+          <option>Напої</option>
+        </select>
+      </div>
+      <div>
+        <label for="search">Пошук товару</label>
+        <input id="search" placeholder="Введіть назву товару…" />
+      </div>
+      <div>
+        <label for="sort">Сортування</label>
+        <select id="sort">
+          <option>За популярністю</option>
+          <option>За ціною (зростання)</option>
+          <option>За ціною (спадання)</option>
+          <option>За категорією</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="stats grid grid-3">
+      <div class="stat"><h3>Мінімальна ціна</h3><p>—</p></div>
+      <div class="stat"><h3>Середня ціна</h3><p>—</p></div>
+      <div class="stat"><h3>Максимальна ціна</h3><p>—</p></div>
+    </section>
+
+    <section class="section">
+      <h2>Ціни на товари в АТБ</h2>
+      <div class="empty-state">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <circle cx="11" cy="11" r="7" />
+          <line x1="16.5" y1="16.5" x2="22" y2="22" />
+        </svg>
+        <h3>Нічого не знайдено</h3>
+        <p>Введіть назву товару в поле пошуку, щоб побачити ціни</p>
+      </div>
+    </section>
+
+    <p class="footer-note">Джерело цін: каталог АТБ. Назва сервісу: PRODUCT.UA.</p>
+  </main>
+</body>
+</html>
