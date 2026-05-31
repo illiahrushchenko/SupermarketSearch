@@ -61,7 +61,7 @@
             <th>Категорія</th>
             <th>Ціна</th>
             <th>Магазин</th>
-            <th></th>
+            <th aria-label="Вподобані"></th>
           </tr>
         </thead>
         <tbody id="product-tbody">
@@ -219,11 +219,41 @@
     document.getElementById('search').addEventListener('input', filterProducts);
     filterProducts();
 
+    function getWishlist() {
+      try { return JSON.parse(localStorage.getItem('wishlist') || '[]'); } catch(e) { return []; }
+    }
+    function saveWishlist(list) {
+      try { localStorage.setItem('wishlist', JSON.stringify(list)); } catch(e) {}
+    }
+
+    // Restore persisted wishlist state (overrides hard-coded defaults)
+    (function restoreWishlist() {
+      const saved = getWishlist();
+      if (!saved.length) return;
+      document.querySelectorAll('#product-tbody tr').forEach(function(row) {
+        const name = row.cells[0].textContent.trim();
+        const btn  = row.querySelector('.btn-wish');
+        if (!btn) return;
+        const inWishlist = saved.includes(name);
+        btn.classList.toggle('active', inWishlist);
+        btn.title = inWishlist ? 'Прибрати з вподобаних' : 'Додати до вподобаних';
+      });
+    })();
+
     document.getElementById('product-tbody').addEventListener('click', function(e) {
       const btn = e.target.closest('.btn-wish');
       if (!btn) return;
       const isActive = btn.classList.toggle('active');
       btn.title = isActive ? 'Прибрати з вподобаних' : 'Додати до вподобаних';
+
+      const name = btn.closest('tr').cells[0].textContent.trim();
+      let list = getWishlist();
+      if (isActive) {
+        if (!list.includes(name)) list.push(name);
+      } else {
+        list = list.filter(function(n) { return n !== name; });
+      }
+      saveWishlist(list);
     });
   </script>
 </body>
